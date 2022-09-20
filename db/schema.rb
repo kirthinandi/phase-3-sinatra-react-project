@@ -13,15 +13,15 @@
 ActiveRecord::Schema.define(version: 2022_09_14_191311) do
 
   create_table "categories", force: :cascade do |t|
-    t.string "feeling"
-    t.integer "post_id"
-    t.index ["post_id"], name: "index_categories_on_post_id"
+    t.string "emotion"
   end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "date"
     t.string "entry"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_posts_on_category_id"
   end
 
 end

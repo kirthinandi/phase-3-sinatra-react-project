@@ -7,10 +7,16 @@ class ApplicationController < Sinatra::Base
     posts.to_json
   end
 
+  get "/categories" do
+    categories = Category.all
+    categories.to_json
+  end
+
   get "/posts/:id" do
     posts = Post.find(params[:id])
     posts.to_json
   end
+
 
   delete "/posts/:id" do
     post = Post.find(params[:id])
@@ -22,7 +28,8 @@ class ApplicationController < Sinatra::Base
     post = Post.create(
       title: params[:title],
       date: params[:date], 
-      entry: params[:entry]
+      entry: params[:entry],
+      category_id: params[:category_id]
     )
     post.to_json
   end
@@ -36,5 +43,6 @@ class ApplicationController < Sinatra::Base
     )
     post.to_json
   end
+
 
 end
